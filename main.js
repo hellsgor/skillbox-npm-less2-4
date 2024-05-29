@@ -1,15 +1,15 @@
 import Navigo from 'navigo';
 import {el, setChildren} from 'redom';
 
-const basePath = process.env.NODE_ENV !== 'production'
-  ? '/'
-  : '/skillbox-npm-less2-4/';
+const ghpPathPart = '/skillbox-npm-less2-4/';
+const router = new Navigo(
+  window.location.pathname.includes(ghpPathPart)
+    ? ghpPathPart
+    : '/');
 
-const router = new Navigo('/');
-
-function navigate({target}) {
+function navigate(event) {
   event.preventDefault();
-  router.navigate(target.getAttribute('href'));
+  router.navigate(event.target.getAttribute('href'));
 }
 
 function postList() {
@@ -24,7 +24,7 @@ function postList() {
         el(
           'li',
           el('a', {
-            href: `${basePath}post/${post.id}`,
+            href: `/post/${post.id}`,
             onclick: navigate
           }, post.title),
         ),
@@ -47,7 +47,7 @@ function postPage(id) {
       el(
         'a',
         {
-          href: `${basePath}`,
+          href: `/`,
           onclick: navigate,
         },
         'Вернуться к списку',
@@ -58,11 +58,11 @@ function postPage(id) {
   return el('div', {className: 'container'}, [el('h1', 'Post'), body]);
 }
 
-router.on(`${basePath}`, () => {
+router.on(`/`, () => {
   setChildren(document.body, postList());
 });
 
-router.on(`${basePath}post/:id`, ({data: {id}}) => {
+router.on(`/post/:id`, ({data: {id}}) => {
   setChildren(document.body, postPage(id));
 });
 
