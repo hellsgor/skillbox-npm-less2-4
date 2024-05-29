@@ -2,10 +2,11 @@
   "name": "2.4-lesson---npm---independently",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --public-url /skillbox-npm-less2-4/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "hellsgor",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "redom": "^4.0.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "parcel": "^2.12.0"
   }
 }
