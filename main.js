@@ -1,9 +1,9 @@
 import Navigo from 'navigo';
-import { el, setChildren } from 'redom';
+import {el, setChildren} from 'redom';
 
 const router = new Navigo('/');
 
-function navigate({ event }) {
+function navigate({event}) {
   event.preventDefault();
   router.navigate(target.getAttribute('href'));
 }
@@ -19,13 +19,13 @@ function postList() {
       data.map(post =>
         el(
           'li',
-          el('a', { href: `/post/${post.id}`, onclick: navigate }, post.title),
+          el('a', {href: `/post/${post.id}`, onclick: navigate}, post.title),
         ),
       ),
     );
   });
 
-  return el('div', { className: 'container' }, [el('h1', 'Post list'), list]);
+  return el('div', {className: 'container'}, [el('h1', 'Post list'), list]);
 }
 
 function postPage(id) {
@@ -48,14 +48,14 @@ function postPage(id) {
     ]);
   });
 
-  return el('div', { className: 'container' }, [el('h1', 'Post'), body]);
+  return el('div', {className: 'container'}, [el('h1', 'Post'), body]);
 }
 
 router.on('/', () => {
   setChildren(document.body, postList());
 });
 
-router.on('/post/:id', ({ data: { id } }) => {
+router.on('/post/:id', ({data: {id}}) => {
   setChildren(document.body, postPage(id));
 });
 
