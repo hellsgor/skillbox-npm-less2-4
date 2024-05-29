@@ -1,0 +1,19 @@
+{
+  "name": "2.4-lesson---npm---independently",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html"
+  },
+  "author": "hellsgor",
+  "license": "ISC",
+  "dependencies": {
+    "navigo": "^8.11.1",
+    "redom": "^4.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
